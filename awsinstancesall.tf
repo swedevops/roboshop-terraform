@@ -69,7 +69,8 @@ resource "aws_instance" "rabbitmq" {
   tags = {
     Name = "rabbitmq"
   }
-}resource "aws_instance" "payment" {
+}
+resource "aws_instance" "payment" {
   ami           = "ami-0b5a2b5b8f2be4ec2"
   instance_type = "t3.micro"
 
