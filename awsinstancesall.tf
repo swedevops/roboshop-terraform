@@ -19,6 +19,12 @@ resource "aws_route53_record" "frontend" {
   ttl     = 30
   records = [aws_instance.fronend.private_ip]
 }
+resource "aws_security_group" "frontend" {
+  name        = "test"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = aws_vpc.main.id
+}
+
 resource "aws_instance" "mongodb" {
   ami           = data.aws_ami.centos.image_id
   instance_type = "t3.micro"
