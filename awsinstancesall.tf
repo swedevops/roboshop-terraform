@@ -164,3 +164,4 @@ resource "aws_route53_record" "payment" {
   records = [aws_instance.payment.private_ip]
 }
 
+
