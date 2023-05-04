@@ -1,12 +1,19 @@
 data "aws_ami" "centos" {
   owners = ["973714476881"]
   most_recent = true
-   name_regex = "Centos-8-DevOps-Practice"
+  name_regex = "Centos-8-DevOps-Practice"
+}
+data "aws_security_group" "test" {
+  name = "test"
+}
+variable "instance_type" {
+  default = "t3.micro"
 }
 
-resource "aws_instance" "fronend" {
+resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
 
   tags = {
     Name = "frontend"
@@ -17,18 +24,12 @@ resource "aws_route53_record" "frontend" {
   name    = "frontend-dev.swedev99.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.fronend.private_ip]
+  records = [aws_instance.frontend.private_ip]
 }
-resource "aws_security_group" "frontend" {
-  name        = "test"
-  description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.main.id
-}
-
 resource "aws_instance" "mongodb" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "mongodb"
   }
@@ -40,25 +41,26 @@ resource "aws_route53_record" "mongodb" {
   ttl     = 30
   records = [aws_instance.mongodb.private_ip]
 }
-resource "aws_instance" "catalogue" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
 
+resource "aws_instance" "catlogue" {
+  ami           = data.aws_ami.centos.image_id
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "catalogue"
   }
 }
-resource "aws_route53_record" "catalogue" {
+resource "aws_route53_record" "catlogue" {
   zone_id = "Z0587270PBVKKHW0FPNL"
-  name    = "catalogue-dev.swedev99.online"
+  name    = "catlogue-dev.swedev99.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.catalogue.private_ip]
+  records = [aws_instance.catlogue.private_ip]
 }
 resource "aws_instance" "redis" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "redis"
   }
@@ -72,8 +74,8 @@ resource "aws_route53_record" "redis" {
 }
 resource "aws_instance" "user" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "user"
   }
@@ -87,8 +89,8 @@ resource "aws_route53_record" "user" {
 }
 resource "aws_instance" "cart" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "cart"
   }
@@ -100,10 +102,11 @@ resource "aws_route53_record" "cart" {
   ttl     = 30
   records = [aws_instance.cart.private_ip]
 }
+
 resource "aws_instance" "mysql" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "mysql"
   }
@@ -117,23 +120,23 @@ resource "aws_route53_record" "mysql" {
 }
 resource "aws_instance" "shipping" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "shipping"
   }
 }
 resource "aws_route53_record" "shipping" {
   zone_id = "Z0587270PBVKKHW0FPNL"
-  name    = "shipping-dev.swedev99.online"
+  name    = "mysql-dev.swedev99.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.shipping.private_ip]
+  records = [aws_instance.mysql.private_ip]
 }
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "rabbitmq"
   }
@@ -147,8 +150,8 @@ resource "aws_route53_record" "rabbitmq" {
 }
 resource "aws_instance" "payment" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type =  var.instance_type
+  vpc_security_group_ids = [data.aws_security_group.test.id]
   tags = {
     Name = "payment"
   }
