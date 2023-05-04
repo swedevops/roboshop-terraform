@@ -131,7 +131,7 @@ resource "aws_route53_record" "shipping" {
   name    = "mysql-dev.swedev99.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.mysql.private_ip]
+  records = [aws_instance.shipping.private_ip]
 }
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.centos.image_id
