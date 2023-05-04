@@ -128,11 +128,13 @@ resource "aws_instance" "shipping" {
 }
 resource "aws_route53_record" "shipping" {
   zone_id = "Z0587270PBVKKHW0FPNL"
-  name    = "mysql-dev.swedev99.online"
+  name    = "shipping-dev.swedev99.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.shipping.private_ip]
 }
+
+
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.centos.image_id
   instance_type =  var.instance_type
