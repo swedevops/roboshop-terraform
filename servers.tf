@@ -1,15 +1,19 @@
 resource "aws_instance" "instance" {
-  for_each      = var.components
-  ami           = data.aws_ami.centos.image_id
-  instance_type = each.value["instance_type"]
+  for_each               = var.components
+  ami                    = data.aws_ami.centos.image_id
+  instance_type          = each.value["instance_type"]
   vpc_security_group_ids = [data.aws_security_group.test.id]
 
   tags = {
     Name = each.value["name"]
   }
+}
+  resource "null_resource" "provisioner" {
+    depends_on = [aws_instance.instance, aws_route53_record.records]
+  for_each = var.components
+    provisioner "remote-exec" {
 
-  provisioner "remote-exec" {
-  connection {
+      connection {
     type     = "ssh"
     user     = "centos"
     password = "DevOps321"
@@ -17,7 +21,7 @@ resource "aws_instance" "instance" {
   }
   inline = [
     "rm -rf roboshop-shell",
-    "https://github.com/swedevops/roboshop-shell.git",
+    "git clone https://github.com/swedevops/roboshop-shell.git",
     "cd roboshop-shell",
     "sudo bash ${each.value["name"]}.sh ${lookup(each.value,"password","null")}"
   ]
