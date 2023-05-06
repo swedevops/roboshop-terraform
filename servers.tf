@@ -13,13 +13,13 @@ resource "aws_instance" "instance" {
     type     = "ssh"
     user     = "centos"
     password = "DevOps321"
-    host     = self.private_ip
+    host     = aws_instance.instance[each.value["name"]].private_ip
   }
   inline = [
     "rm -rf roboshop-shell",
     "https://github.com/swedevops/roboshop-shell.git",
     "cd roboshop-shell",
-    "sudo bash ${each.value["name"]}.sh"
+    "sudo bash ${each.value["name"]}.sh ${lookup(each.value,"password","null")}"
   ]
 }
 }
