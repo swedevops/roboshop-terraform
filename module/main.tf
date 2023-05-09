@@ -4,7 +4,7 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [data.aws_security_group.test.id]
 
   tags = {
-    Name = local.name
+    Name = var.component_name
   }
 }
 resource "null_resource" "provisioner" {
