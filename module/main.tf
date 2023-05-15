@@ -9,9 +9,10 @@ resource "aws_instance" "instance" {
   }
   # Name = var.component_name
 }
-resource "null_resource" "provisioner" {
+resource "null_resource" "provisioner"  {
   # count = var.provisioner ? 1 : 0
   depends_on = [aws_instance.instance, aws_route53_record.records]
+
   provisioner "remote-exec" {
 
     connection {
@@ -20,6 +21,7 @@ resource "null_resource" "provisioner" {
       password = "DevOps321"
       host     = aws_instance.instance.private_ip
     }
+
     inline = var.app_type == "db" ? local.db_commands : local.app_commands
     #    [
 #      "rm -rf roboshop-shell",
@@ -33,7 +35,7 @@ resource "aws_route53_record" "records" {
   zone_id  = "Z0587270PBVKKHW0FPNL"
   name     = "${var.component_name}-dev.swedev99.online"
   type     = "A"
-  ttl      = 30
+  ttl     = 30
   records  = [aws_instance.instance.private_ip]
 }
 
@@ -91,9 +93,9 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
     "Effect": "Allow",
     "Action": "ssm:DescribeParameters",
     "Resource": "*"
-  }
-  ]
-  })
+     }
+    ]
+   })
   }
 
 
