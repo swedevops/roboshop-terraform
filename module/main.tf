@@ -88,7 +88,7 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
   ],
     "Resource": "arn:aws:ssm:us-east-1:135820335997:parameter/${var.component_name}-${var.env}.*"
   },
-  {
+      {
     "Sid": "VisualEditor1",
     "Effect": "Allow",
     "Action": "ssm:DescribeParameters",
