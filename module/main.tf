@@ -12,9 +12,9 @@ resource "aws_instance" "instance" {
 resource "null_resource" "provisioner"  {
   depends_on = [aws_instance.instance, aws_route53_record.records]
 
-  triggers = {
-    private_ip = aws_instance.instance.private_ip
-  }
+ # triggers = {
+ #   private_ip = aws_instance.instance.private_ip
+ # }
 
   provisioner "remote-exec" {
 
@@ -26,12 +26,7 @@ resource "null_resource" "provisioner"  {
     }
 
     inline = var.app_type == "db" ? local.db_commands : local.app_commands
-    #    [
-#      "rm -rf roboshop-shell",
-#      "git clone https://github.com/swedevops/roboshop-shell.git",
-#      "cd roboshop-shell",
-#      "sudo bash ${var.component_name}.sh ${var.password}"
-#    ]
+
   }
 }
 resource "aws_route53_record" "records" {
@@ -72,7 +67,6 @@ resource "aws_iam_instance_profile" "instance_profile" {
 resource "aws_iam_role_policy" "ssm-ps-policy" {
   name = "${var.component_name}-${var.env}-ssm-ps-policy"
   role = aws_iam_role.role.id
-
 
 
   policy = jsonencode({
