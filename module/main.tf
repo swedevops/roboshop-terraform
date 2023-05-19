@@ -1,7 +1,7 @@
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.centos.image_id
   instance_type          = var.instance_type
-  vpc_security_group_ids = [data.aws_security_group.test.id]
+  vpc_security_group_ids = [ data.aws_security_group.test.id ]
   iam_instance_profile   = aws_iam_instance_profile.instance_profile.name
 
   tags                   = {
@@ -10,10 +10,8 @@ resource "aws_instance" "instance" {
 }
 
 resource "null_resource" "provisioner" {
-  depends_on = [aws_instance.instance, aws_route53_record.records]
-  triggers = {
-    private_ip = aws_instance.instance.private_ip
-  }
+  depends_on = [aws_instance.instance,aws_route53_record.records]
+
 
 
   provisioner "remote-exec" {
@@ -28,11 +26,10 @@ resource "null_resource" "provisioner" {
     inline = var.app_type == "db" ? local.db_commands : local.app_commands
   }
 }
-
-
 resource "aws_route53_record" "records" {
+
   zone_id = "Z0587270PBVKKHW0FPNL"
-  name    = "${var.component_name}-dev.rdevopsb72.online"
+  name    = "${var.component_name}-dev.swedev99.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance.private_ip]
