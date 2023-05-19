@@ -30,7 +30,6 @@ app_servers = {
   }
 }
 
-env = "dev"
 
 database_servers = {
   mongodb = {
@@ -53,4 +52,5 @@ database_servers = {
   }
 }
 
+env = "dev"
 
