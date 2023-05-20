@@ -79,7 +79,8 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
           "ssm:GetParameterHistory",
           "ssm:GetParametersByPath",
           "ssm:GetParameters",
-          "ssm:GetParameter"
+          "ssm:GetParameter",
+          "ssm:Decrypt"
         ],
         "Resource" : [
           "arn:aws:kms:us-east-1:633788536644:key/dce90622-5a23-4f82-a639-be841f534702",
