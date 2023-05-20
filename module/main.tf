@@ -11,7 +11,9 @@ resource "aws_instance" "instance" {
 
 resource "null_resource" "provisioner" {
   depends_on = [aws_instance.instance,aws_route53_record.records]
-
+triggers = {
+  private_ip = aws_instance.instance.private_ip
+}
 
 
   provisioner "remote-exec" {
@@ -69,22 +71,21 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
 
 
   policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
+    "Version": "2012-10-17",
+    "Statement": [
       {
-        "Sid" : "VisualEditor0",
-        "Effect" : "Allow",
-        "Action" : [
+        "Sid": "VisualEditor0",
+        "Effect": "Allow",
+        "Action": [
           "kms:Decrypt",
           "ssm:GetParameterHistory",
           "ssm:GetParametersByPath",
           "ssm:GetParameters",
-          "ssm:GetParameter",
-          "ssm:Decrypt"
+          "ssm:GetParameter"
         ],
-        "Resource" : [
-          "arn:aws:kms:us-east-1:633788536644:key/dce90622-5a23-4f82-a639-be841f534702",
-          "arn:aws:ssm:us-east-1:633788536644:parameter/${var.env}.${var.component_name}.*"
+        "Resource": [
+          "arn:aws:kms:us-east-1:135820335997:key/cc793974-5eaf-4f40-9c9f-92dd8dfdf28d",
+          "arn:aws:ssm:us-east-1:135820335997:parameter/${var.env}.${var.component_name}*"
         ]
       }
     ]
