@@ -28,7 +28,7 @@ triggers = {
 }
 resource "aws_route53_record" "records" {
 
-  zone_id = "Z0587270PBVKKHW0FPNL"
+  zone_id = "Z09742841AKL41WFTXSIX"
   name    = "${var.component_name}-dev.swedev99.online"
   type    = "A"
   ttl     = 30
@@ -82,8 +82,8 @@ resource "aws_iam_role_policy" "ssm-ps-policy" {
           "ssm:GetParameter"
         ],
         "Resource": [
-          "arn:aws:kms:us-east-1:135820335997:key/cc793974-5eaf-4f40-9c9f-92dd8dfdf28d",
-          "arn:aws:ssm:us-east-1:135820335997:parameter/${var.env}.${var.component_name}*"
+          "arn:aws:ssm:us-east-1:720213034218:parameter/${var.env}.${var.component_name}*",
+          "arn:aws:kms:us-east-1:720213034218:key/158f1b0a-22d2-4312-a359-07d01956cbbf"
         ]
       }
     ]
