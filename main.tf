@@ -7,4 +7,6 @@ module "vpc" {
   tags = local.tags
   env = var.env
 }
+output "vpc" {
+  value = module.vpc
 }
