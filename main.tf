@@ -8,7 +8,7 @@ module "vpc" {
   env = var.env
 }
 
-module "app" {
+module "web" {
   source = "git::https://github.com/swedevops/tf-module-app.git"
 
   for_each = var.app
