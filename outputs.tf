@@ -5,3 +5,6 @@
 output "vpc" {
   value = module.vpc
 }
+output "app" {
+  value = module.app
+}
