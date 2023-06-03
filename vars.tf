@@ -3,5 +3,3 @@ variable "vpc" {}
 variable "app" {}
 
 
-
-

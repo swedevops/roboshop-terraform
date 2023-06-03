@@ -24,21 +24,21 @@ vpc = {
         azs = ["us-east-1a", "us-east-1b"]
       }
     }
+
   }
 }
 
 app = {
   frontend = {
-    name          = "frontend"
-    instance_type = "t3.small"
-    subnet_name   = "web"
+    name = "frontend"
+    instance_type = "t3.micro"
+    subnet_name = "web"
   }
   catalogue = {
-    name          = "catalogue"
+    name = "catalogue"
     instance_type = "t3.small"
-    subnet_name   = "app"
+    subnet_name = "app"
   }
-
 }
 #  cart = {
 #    name          = "cart"
