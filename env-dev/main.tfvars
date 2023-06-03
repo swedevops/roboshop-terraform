@@ -38,6 +38,8 @@ app = {
     instance_type = "t3.small"
     subnet_name   = "app"
   }
+
+}
 #  cart = {
 #    name          = "cart"
 #    instance_type = "t3.small"
@@ -58,4 +60,4 @@ app = {
 #    instance_type = "t3.small"
 #    subnet_name   = "app"
 #  }
-}
+
