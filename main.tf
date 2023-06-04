@@ -16,7 +16,7 @@ module "app" {
   max_size         = each.value["max_size"]
   min_size         = each.value["min_size"]
 
-
+  tags = local.tags
   env            = var.env
   bastion_cidr   = var.bastion_cidr
 
