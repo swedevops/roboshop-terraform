@@ -44,7 +44,7 @@ module "docdb" {
   engine_version = each.value["engine_version"]
   tags         = local.tags
   env          = var.env
-  vpc_id = locals.vpc_id
+  vpc_id = local.vpc_id
   kms_arn = var.kms_arn
 
 }
