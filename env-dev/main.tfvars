@@ -122,8 +122,6 @@ alb = {
     allow_alb_cidr = null
     internal = false
   }
-}
- alb = {
   private = {
     name = "private"
     subnet_name = "private"
