@@ -13,4 +13,6 @@ variable "kms_arn" {}
 variable "rds" {}
 variable "elasticache" {}
 variable "rabbitmq" {}
+variable "kms-arn" {}
+variable "alb" {}
 
