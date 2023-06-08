@@ -37,53 +37,52 @@ vpc = {
 
 app = {
   frontend = {
-    name             = "frontend"
-    instance_type    = "t3.micro"
-    subnet_name      = "web"
-    desired_capacity = 2
-    max_size         = 10
-    min_size         = 2
-    allow_app_cidr   = "public"
-    app_port         = 80
+    name              = "frontend"
+    instance_type     = "t3.small"
+    subnet_name       = "web"
+    allow_app_cidr    = "public"
+    desired_capacity  = 1
+    max_size          = 10
+    min_size          = 1
+    app_port          = 80
     listener_priority = 1
-    lb_type    = "public"
-    dns_name   =  "dev"
+    lb_type           = "public"
+    dns_name          = "dev"
   }
   catalogue = {
-    name           = "catalogue"
-    instance_type  = "t3.small"
-    subnet_name    = "app"
-    desired_capacity = 1
-    max_size         = 10
-    min_size         = 1
-    allow_app_cidr = "web"
-    app_port         = 8080
+    name              = "catalogue"
+    instance_type     = "t3.small"
+    subnet_name       = "app"
+    allow_app_cidr    = "web"
+    desired_capacity  = 1
+    max_size          = 10
+    min_size          = 1
+    app_port          = 8080
     listener_priority = 1
-    lb_type    = "private"
+    lb_type           = "private"
   }
+  #  cart = {
+  #    name          = "cart"
+  #    instance_type = "t3.small"
+  #    subnet_name   = "app"
+  #  }
+  #  user = {
+  #    name          = "user"
+  #    instance_type = "t3.small"
+  #    subnet_name   = "app"
+  #  }
+  #  shipping = {
+  #    name          = "shipping"
+  #    instance_type = "t3.small"
+  #    subnet_name   = "app"
+  #  }
+  #  payment = {
+  #    name          = "payment"
+  #    instance_type = "t3.small"
+  #    subnet_name   = "app"
+  #  }
+  #}
 }
-#  cart = {
-#    name          = "cart"
-#    instance_type = "t3.small"
-#    subnet_name   = "app"
-#  }
-#  user = {
-#    name          = "user"
-#    instance_type = "t3.small"
-#    subnet_name   = "app"
-#  }
-#  shipping = {
-#    name          = "shipping"
-#    instance_type = "t3.small"
-#    subnet_name   = "app"
-#  }
-#  payment = {
-#    name          = "payment"
-#    instance_type = "t3.small"
-#    subnet_name   = "app"
-#  }
-#}
-
 docdb = {
   main = {
     subnet_name    = "db"
