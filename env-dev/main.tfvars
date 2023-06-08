@@ -5,6 +5,7 @@ default_vpc_cidr = "172.31.0.0/16"
 default_vpc_rtid = "rtb-0f959d67ad916bc99"
 domain_id        = "Z09742841AKL41WFTXSIX"
 kms_arn =  "arn:aws:kms:us-east-1:720213034218:key/158f1b0a-22d2-4312-a359-07d01956cbbf"
+domain_name = "swedev99.online"
 vpc = {
   main = {
     cidr_block = "10.0.0.0/16"
@@ -44,6 +45,8 @@ app = {
     min_size         = 2
     allow_app_cidr   = "public"
     app_port         = 80
+    listener_priority = 1
+    lb_type    = "public"
   }
   catalogue = {
     name           = "catalogue"
@@ -54,7 +57,8 @@ app = {
     min_size         = 2
     allow_app_cidr = "web"
     app_port         = 8080
-
+    listener_priority = 1
+    lb_type    = "private"
   }
 }
 #  cart = {

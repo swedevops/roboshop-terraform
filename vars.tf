@@ -7,11 +7,13 @@ variable "default_vpc_cidr" {}
 variable "default_vpc_rtid" {}
 variable "domain_id" {}
 variable "alb" {}
+variable "domain_name" {}
+variable "kms_arn" {}
 
 variable "docdb" {}
 variable "rds" {}
 variable "elasticache" {}
 variable "rabbitmq" {}
-variable "kms_arn" {}
+
 
 
