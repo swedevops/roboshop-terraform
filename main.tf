@@ -121,6 +121,7 @@ module "rabbitmq" {
 #  kms_arn      = var.kms_arn
 #  monitor_cidr = var.monitor_cidr
 #}
+
 module "eks" {
   source             = "https://github.com/swedevops/tf-module-eks.git"
   ENV                = var.env
@@ -132,6 +133,7 @@ module "eks" {
   MIN_SIZE           = 2
   kms_arn            = var.kms_arn
 }
+
 #Load Runner
 data "aws_ami" "ami" {
   most_recent      = true
