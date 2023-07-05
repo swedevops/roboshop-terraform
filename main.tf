@@ -123,7 +123,7 @@ module "rabbitmq" {
 #}
 
 module "eks" {
-  source             = "https://github.com/swedevops/tf-module-eks.git"
+  source             = "git::https://github.com/swedevops/tf-module-eks.git"
   ENV                = var.env
   eks_version        = 1.27
   PRIVATE_SUBNET_IDS = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets", null), "app", null), "subnet_ids", null)
