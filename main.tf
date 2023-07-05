@@ -132,7 +132,6 @@ module "eks" {
   MIN_SIZE           = 2
   kms_arn            = var.kms_arn
 }
-
 #Load Runner
 data "aws_ami" "ami" {
   most_recent      = true
