@@ -1,11 +1,11 @@
 env = "prod"
-monitor_cidr = ["172.31.80.24/32"]
-bastion_cidr = ["172.31.5.54/32"]
-default_vpc_id = "vpc-02bd1b9b9ce8cb691"
+monitor_cidr = ["172.31.94.59/32"]
+bastion_cidr = ["172.31.86.162/32"]
+default_vpc_id = "vpc-064a12296c55d50b4"
 default_vpc_cidr = "172.31.0.0/16"
-default_vpc_rtid = "rtb-0f959d67ad916bc99"
+default_vpc_rtid = "rtb-08e7abd85de4b91cc"
 domain_id        = "Z09742841AKL41WFTXSIX"
-kms_arn =  "arn:aws:kms:us-east-1:720213034218:key/158f1b0a-22d2-4312-a359-07d01956cbbf"
+kms_arn =  "arn:aws:kms:us-east-1:720213034218:key/134c851f-094d-4982-8072-ab9393c849cd"
 domain_name = "swedev99.online"
 vpc = {
   main = {
