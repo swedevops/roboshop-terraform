@@ -144,7 +144,7 @@ data "aws_ami" "ami" {
 resource "aws_instance" "load" {
   ami = data.aws_ami.ami.id
   instance_type = "t3.medium"
-  vpc_security_group_ids = ["sg-0fa3fd48759bc0721"]
+  vpc_security_group_ids = ["sg-0fc2e28757689f3e0"]
   tags = {
     Name = "load-runner"
   }
